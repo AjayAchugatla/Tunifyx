@@ -3,6 +3,7 @@ import Home from "./Pages/Home"
 import AuthCallBack from "./Pages/AuthCallBack"
 import { AuthenticateWithRedirectCallback } from "@clerk/clerk-react"
 import MainLayout from "./layout/MainLayout"
+import AlbumPage from "./Pages/AlbumPage"
 
 function App() {
 
@@ -15,7 +16,7 @@ function App() {
         <Route path="/auth-callback" element={<AuthCallBack />} />
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
-
+          <Route path="/albums/:albumId" element={<AlbumPage />} />
         </Route>
       </Routes>
     </>

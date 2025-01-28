@@ -17,8 +17,6 @@ const LeftSidebar = () => {
     useEffect(() => {
         fetchAlbums()
     }, [fetchAlbums])
-    console.log(albums);
-
     return (
         <div className="h-full flex flex-col gap-2 "
         >
@@ -58,7 +56,9 @@ const LeftSidebar = () => {
                                             key={album._id}
                                             className="p-2 hover:bg-zinc-800 rounded-md flex items-center gap-3 group cursor-pointer"
                                         >
-                                            <img src={album.imageUrl} alt="Playlist img"
+                                            <img
+                                                src={album.imageUrl}
+                                                alt="Playlist img"
                                                 className="size-12 rounded-md flex shrink-0 object-cover"
                                             />
 
