@@ -1,9 +1,9 @@
 import Album from "../models/albumModel.js"
 
-export const getAlbum = (req, res, next) => {
+export const getAlbum = async (req, res, next) => {
     const { albumId } = req.params
     try {
-        const album = Album.findById(albumId).populate("songs")
+        const album = await Album.findById(albumId).populate("songs")
         if (!album) {
             return res.status(404).json({
                 message: "Album not found"
