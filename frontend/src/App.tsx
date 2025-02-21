@@ -5,6 +5,7 @@ import { AuthenticateWithRedirectCallback } from "@clerk/clerk-react"
 import MainLayout from "./layout/MainLayout"
 import AlbumPage from "./Pages/AlbumPage"
 import AdminPage from "./Pages/AdminPage"
+import { Toaster } from "react-hot-toast"
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/albums/:albumId" element={<AlbumPage />} />
         </Route>
       </Routes>
+      <Toaster />
     </>
   )
 }
