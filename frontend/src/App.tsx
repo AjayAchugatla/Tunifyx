@@ -6,6 +6,7 @@ import MainLayout from "./layout/MainLayout"
 import AlbumPage from "./Pages/AlbumPage"
 import AdminPage from "./Pages/AdminPage"
 import { Toaster } from "react-hot-toast"
+import NotFound from "./Pages/NotFound"
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/albums/:albumId" element={<AlbumPage />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
       <Toaster />

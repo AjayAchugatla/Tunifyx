@@ -146,7 +146,7 @@ export const useMusicStore = create<MusicStore>((set) => ({
     deleteAlbum: async (id) => {
         set({ isLoading: true, error: null })
         try {
-            const response = await axiosInstance.delete("/admin/songs/" + id)
+            const response = await axiosInstance.delete("/admin/albums/" + id)
             set(state => ({
                 albums: state.albums.filter((album) => album._id !== id),
                 songs: state.songs.map((song) => song.albumId === state.albums.find((a) => a._id === id)?.title ? { ...song, album: null } : song)
