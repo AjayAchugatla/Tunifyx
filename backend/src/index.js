@@ -20,10 +20,7 @@ const __dirname = path.resolve()
 const app = express()
 const PORT = process.env.PORT;
 
-app.use(cors({
-    origin: ["http://localhost:3000", "https://tunifyx.vercel.app/"],
-    credentials: true
-}))
+app.use(cors());
 app.use(express.json());
 app.use(clerkMiddleware()) //Adds auth to req obj so that we can get req.auth.userId
 app.use(fileUpload({
