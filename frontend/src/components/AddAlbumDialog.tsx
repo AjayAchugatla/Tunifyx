@@ -126,7 +126,7 @@ const AddAlbumDialog = () => {
                     </div>
 
                     <div className='space-y-2'>
-                        <label className='text-sm font-medium'>Duration (seconds)</label>
+                        <label className='text-sm font-medium'>Release Year</label>
                         <Input
                             type='number'
                             min={1900}

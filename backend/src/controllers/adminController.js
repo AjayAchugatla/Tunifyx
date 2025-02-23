@@ -5,10 +5,10 @@ import cloudinary from "../lib/cloudinary.js"
 //helper function for cloudinary uploads
 const uploadToCloudinary = async (file) => {
     try {
-        const res = await cloudinary.uploader(file.tempFilePath, {
-            resource_type: "auto"
-        })
-        return res.secure.url
+        const result = await cloudinary.uploader.upload(file.tempFilePath, {
+            resource_type: "auto",
+        });
+        return result.secure_url;
     } catch (error) {
         console.log("Error in uploadtoCloudinary", error);
 
@@ -30,7 +30,7 @@ export const addSong = async (req, res, next) => {
 
         const audioUrl = await uploadToCloudinary(audioFile);
         const imageUrl = await uploadToCloudinary(imageFile);
-        const song = Song.create({
+        const song = new Song({
             title,
             artist,
             imageUrl,
@@ -47,6 +47,7 @@ export const addSong = async (req, res, next) => {
                     songs: song._id
                 }
             })
+            await al.save()
         }
         res.status(201).json({
             success: true,

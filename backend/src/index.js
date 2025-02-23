@@ -4,6 +4,8 @@ import { clerkMiddleware } from '@clerk/express'
 import fileUpload from "express-fileupload"
 import path from "path"
 import cors from "cors"
+import cron from "node-cron"
+import fs from "fs"
 
 import userRoutes from "./routes/userRoutes.js"
 import adminRoutes from "./routes/adminRoutes.js"
@@ -35,6 +37,20 @@ app.use(fileUpload({
     }
 })) // the files uploaded by the client are saved in the temp folder here in the backend and will be deleted after the completion of uploading to cloudinary
 
+const tempDir = path.join(process.cwd(), "temp")
+cron.schedule("0 * * * *", () => {
+    if (fs.existsSync(tempDir)) {
+        fs.readdir(tempDir, (err, files) => {
+            if (err) {
+                console.log(err)
+                return;
+            }
+            for (const file of files) {
+                fs.unlink(path.join(tempDir, file), err => { });
+            }
+        });
+    }
+})
 
 app.use("/api/users", userRoutes);
 app.use("/api/admin", adminRoutes);
