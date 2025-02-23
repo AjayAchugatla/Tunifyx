@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { usePlayerStore } from "@/stores/usePlayerStore"
-import { Pause, Play, Repeat, SkipBack, SkipForward, Volume1 } from "lucide-react";
+import { Pause, Play, Repeat, Repeat1, SkipBack, SkipForward, Volume1 } from "lucide-react";
 import { useEffect, useRef, useState } from "react"
 
 const formatTime = (seconds: number) => {
@@ -15,6 +15,7 @@ const PlayBackControls = () => {
     const [volume, setVolume] = useState(100);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
+    const [repeat, setRepeat] = useState(false);
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
     useEffect(() => {
@@ -104,8 +105,12 @@ const PlayBackControls = () => {
                             size='icon'
                             variant='ghost'
                             className="hidden sm:inline-flex hover:text-white text-zinc-400"
+                            onClick={() => {
+                                setRepeat(!repeat);
+                                if (audioRef.current) { audioRef.current.loop = !repeat }
+                            }}
                         >
-                            <Repeat className="h-4 w-4" />
+                            {repeat ? <Repeat1 className="h-4 w-4" /> : <Repeat className="h-4 w-4" />}
                         </Button>
                     </div>
 
